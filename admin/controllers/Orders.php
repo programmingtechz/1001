@@ -261,4 +261,14 @@ class Orders extends Admin_Controller
 		$output['cart_data'] = $this->cart->contents();
 		echo json_encode($output);die;
 	}
+    
+    public function getLastestOrders(){
+        
+        $output = array('status'=>'SUCCESS');
+        
+        $orders =$this->sales_order_model->get_latest_order();
+        $output['orders'] = $orders;
+        
+        echo json_encode($output);die;
+    }
 }

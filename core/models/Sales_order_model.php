@@ -138,6 +138,25 @@ class Sales_order_model extends App_model
 
 		return $result->num_rows();
 	}
+    
+    function get_latest_order(){
+        
+        
+        $query = "SELECT so.id,so.so_id
+					FROM sales_order so
+						JOIN shops sh ON(so.shop_id=sh.id) WHERE 1=1  ";
+        if( get_current_user_role() != 'admin' ){
+          $query .="AND shops.owner_id = ".get_current_user_id()" ";
+        }
+        
+        $query .="ORDER BY so.so_id DESC";
+
+		$result = $this->db->query($query);
+
+		return $result->result_array();
+        
+       
+    }
 
 
 

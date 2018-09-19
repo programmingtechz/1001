@@ -1809,4 +1809,36 @@ var orderManager = {};
    
 })(jQuery); 
 
+setInterval(get_latest_orders, 120000);
+
+function get_latest_orders(){
+    
+      var request = {
+                type: 'POST',
+                url: base_url+'orders/getLastestOrders',
+                data: {
+                    time:moment().unix() 
+                }
+            };
+            
+        EC.server.request(request, function (resp)
+        {
+            var data = JSON.parse( resp );
+            
+            if(data.status == 'SUCCESS'){
+                   var orders = data.orders;
+                   $('.notifications-menu .label-warning').text(parseInt($('.notifications-menu .label-warning').text())+orders.length);
+                   for( var i=0; i<orders.length; i++){
+                    var nw_elem = $('<li/>');
+                    nw_elem.append('<a href="'+base_url+'orders/view/'+orders[i]['id']+'">New Order: #'+orders[i]['so_id']+' Received</a>')
+                    $('.new_order_list').prepend(nw_elem);
+                   }
+            }
+          
+        });
+}
+
+
+
+
 
