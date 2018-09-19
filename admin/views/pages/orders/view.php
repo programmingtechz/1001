@@ -241,6 +241,7 @@ function updateOrderStatus()
 
 	$.post(base_url+'orders/updateOrderStatus', params, function(resp){
 		console.log(resp);
+		alert('Updated successfully!.');
 		location.reload()
 	}, 'json');
 }
