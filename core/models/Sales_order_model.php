@@ -143,7 +143,7 @@ class Sales_order_model extends App_model
                 
         $query = "SELECT so.id,so.so_id
 					FROM sales_order so
-						JOIN shops sh ON(so.shop_id=sh.id) WHERE 1=1  AND UNIX_TIMESTAMP( so.created_time ) >= $time ";
+						JOIN shops sh ON(so.shop_id=sh.id) WHERE 1=1  AND so_id >= $time ";
         if( get_current_user_role() != 'admin' ){
           $query .="AND sh.owner_id = '".get_current_user_id()."' ";
         }
