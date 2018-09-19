@@ -90,16 +90,18 @@ class Booking extends App_Controller {
     $output = array('status' => 'success');
     try{
 
-      //Check booking date
-      $timestamp = $this->input->post('booking_date');
-      // $is_holiday = $this->is_holiday($timestamp,$order_info['shop_id']);
-      // //echo '<pre>';print_r($is_holiday);die;
-      // if($is_holiday !== FALSE){
-      //   throw new Exception('Please change booking date as it is holiday: '.$is_holiday['reason']);        
-      // }
-
       //Order Info
       $order_info = $this->input->post('order_info');
+
+      //Check booking date
+      $timestamp = $this->input->post('booking_date');
+      $is_holiday = $this->is_holiday($timestamp,$order_info['shop_id']);
+      
+      if($is_holiday !== FALSE){
+        throw new Exception('Please change booking date as it is holiday: '.$is_holiday['reason']);        
+      }
+
+      
       if(!isset($order_info['sub_services'])) $order_info['sub_services'] = array();
       //Add Main Service
       $where = array('shop_id' => $order_info['shop_id'], 'vehicle_id' => $order_info['vehicle_id']);
@@ -240,12 +242,12 @@ class Booking extends App_Controller {
     
   }
 
-  private function is_holiday($timestamp){
+  private function is_holiday($timestamp, $shop_id){
     
     $this->load->model('holidays_model');
     
     $data = $this->holidays_model->get_holiday_by_timestamp($timestamp,$shop_id);
-
+    // echo $this->db->last_query();die;
     if(count($data)){
       return $data;
     }

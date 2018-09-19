@@ -46,12 +46,12 @@ class Holidays_model extends App_model
     $result = $this->db->query($sql);
 
     $shop =  $result->row_array();
-    $id = (isset($shop['id']))?$shop['id']:"";
+    $id = (isset($shop['owner_id']))?$shop['owner_id']:"";
     
     if( empty($id)) return array();
     
-    $sql = "SELECT *, DATE(FROM_UNIXTIME(h.date)) as formatted_date 
-              FROM holidays WHERE created_id = '$id' AND DATE(FROM_UNIXTIME(h.date)) = DATE(FROM_UNIXTIME($timestamp))";
+    $sql = "SELECT *, DATE(FROM_UNIXTIME(date)) as formatted_date 
+              FROM holidays WHERE created_id = '$id' AND DATE(FROM_UNIXTIME(date)) = DATE(FROM_UNIXTIME($timestamp))";
     
     $result = $this->db->query($sql);
 
