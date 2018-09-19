@@ -40,7 +40,7 @@ class shops_model extends App_model
     $this->db->join('areas as a', 'a.id = shops.area_id', 'left',false);
     
      if( get_current_user_role() != 'admin' ){
-        $this->db->where('shops.created_id',get_current_user_id());
+        $this->db->where('shops.owner_id',get_current_user_id());
     }
     
     return parent::listing();

@@ -8,10 +8,10 @@
 		</div>
 		<?php endif; ?>
 		<div class="row pb-20 pt-20">
-			<div class="col-xs-10">
+			<div class="col-xs-9">
 				<h3>Order ID: <?php echo $so_id;?></h3>
 			</div>
-			<div class="col-xs-2">
+			<div class="col-xs-3">
 				<a target="_blank" href="<?php echo site_url('booking/confirmation/'.$order_id.'/print');?>">Print</a>
 			</div>
 		</div>
@@ -21,16 +21,16 @@
 				<h3 class="box-title">User Info</h3>
 				
 				<div class="row">
-					<div class="col-xs-6">Name:</div>
-					<div class="col-xs-6"><?php echo $user_name;?></div>
+					<div class="col-xs-3">Name:</div>
+					<div class="col-xs-9"><?php echo $user_name;?></div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">Email:</div>
-					<div class="col-xs-6"><?php echo $email;?></div>
+					<div class="col-xs-3">Email:</div>
+					<div class="col-xs-9"><?php echo $email;?></div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">Phone:</div>
-					<div class="col-xs-6"><?php echo $phone;?></div>
+					<div class="col-xs-3">Phone:</div>
+					<div class="col-xs-9"><?php echo $phone;?></div>
 				</div>
 			</div>
 
@@ -38,16 +38,16 @@
 				<h3 class="box-title">Payment Info</h3>
 
 				<div class="row">
-					<div class="col-xs-6">Payment Mode:</div>
-					<div class="col-xs-6"><?php echo $payment_type;?></div>
+					<div class="col-xs-5">Payment Mode:</div>
+					<div class="col-xs-7"><?php echo $payment_type;?></div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">TXN ID:</div>
-					<div class="col-xs-6"><?php echo $txn_id;?></div>
+					<div class="col-xs-5">TXN ID:</div>
+					<div class="col-xs-7"><?php echo $txn_id;?></div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">Payment Status:</div>
-					<div class="col-xs-6"><?php echo $payment_status;?></div>
+					<div class="col-xs-5">Payment Status:</div>
+					<div class="col-xs-7"><?php echo $payment_status;?></div>
 				</div>
 			</div>
 			
@@ -60,6 +60,10 @@
 				<div class="row">
 					<div class="col-xs-3">Name:</div>
 					<div class="col-xs-9"><?php echo $shop_name.' ( '.$area_name.' )';?></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">Phone:</div>
+					<div class="col-xs-9"><?php echo $shop_phone;?></div>
 				</div>
 			</div>
 		</div>
@@ -127,7 +131,7 @@
 				
 				<div class="table-responsive">
 					<table class="table">
-						<tr>
+						<!-- <tr>
 							<th style="width:50%">Subtotal:</th>
 							<td><?php echo numberToCurrency($sub_total);?></td>
 						</tr>
@@ -136,7 +140,7 @@
 							<td>
 								<?php echo numberToCurrency($total_discount);?>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th>Total:</th>
 							<td>

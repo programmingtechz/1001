@@ -193,7 +193,7 @@
                     <!-- Message -->
                     <li>
                         <div class="template-component-form-field">
-                            <label for="booking-form-message">Priority *</label>
+                            <label for="booking-form-message">Particulars if any</label>
                             <textarea rows="1" cols="1" name="booking-form-message" ></textarea>
                         </div>
                     </li>
@@ -211,7 +211,7 @@
                     <li class="template-layout-column-center template-margin-bottom-reset" style="visibility: visible;">
                         <div class="template-component-form-field">
                             <input type="checkbox" name="booking-form-donate" value="1">
-                            <label for="booking-form-donate">Are you interested to donate clothes?</label>
+                            <label for="booking-form-donate">Are you interested to <a href="<?=site_url('social')?>">donate</a> clothes?</label>
                         </div>
                     </li>                   
                     

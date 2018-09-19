@@ -45,6 +45,9 @@
                                 <li>
                                     <a href="<?=site_url('contact')?>">Contact</a>
                                 </li>
+                                <li>
+                                    <a href="<?=site_url('social')?>">Social Activities</a>
+                                </li>
                             </ul>
                         </div>
                     </nav>
