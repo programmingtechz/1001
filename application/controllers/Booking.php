@@ -174,6 +174,8 @@ class Booking extends App_Controller {
         'payment_type' => 'cash',
         'txn_id' => '',
         'message' => $this->input->post('message'),
+        'vehicle_number' => $this->input->post('vehicle_number'),
+        'vehicle_model' => $this->input->post('vehicle_model'),
         'pickup' => $this->input->post('pickup'),
         'donate' => $this->input->post('donate')
       );
