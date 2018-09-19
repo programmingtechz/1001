@@ -1,0 +1,4 @@
+admin/logs/
+admin/cache
+application/logs/
+assets/admin/config.js

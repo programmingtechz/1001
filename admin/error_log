@@ -1,0 +1,3 @@
+[25-Sep-2017 02:23:21 America/Denver] PHP Fatal error:  Call to undefined function fordropdown() in /home/izaapinn/public_html/puppies/admin/views/frontend/dogs/report.php on line 42
+[25-Sep-2017 02:23:40 America/Denver] PHP Fatal error:  Call to undefined function formdropdown() in /home/izaapinn/public_html/puppies/admin/views/frontend/dogs/report.php on line 42
+[25-Sep-2017 02:50:39 America/Denver] PHP Fatal error:  Cannot use try without catch or finally in /home/izaapinn/public_html/puppies/admin/controllers/Reports.php on line 83

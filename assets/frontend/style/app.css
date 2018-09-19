@@ -1,0 +1,470 @@
+.pt-10{	padding-top: 10px;}
+.pb-10{padding-bottom: 10px;}
+.pt-20{	padding-top: 20px;}
+.pb-20{padding-bottom: 20px;}
+
+.img_list a img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all .7s ease;
+    transition: all .7s ease;
+}
+.icon-info{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.starting-from{font-size:14px}
+.starting-from .amount{font-size: 2rem;}
+.tour_list_desc .rating{
+	margin: 5px 0 5px -15px;	 
+}
+.row.template-component-button-box{padding-top: 20px;padding-bottom: 20px;}
+.row.icon-info .icon{
+	margin-right: 10px;
+    top: 2px;
+    position: relative;
+}
+
+.template-component-booking .template-component-booking-vehicle-list{width: 100%;}
+.template-component-booking .template-component-booking-vehicle-list>li{
+	width: 18%;
+	flex-grow: inherit;
+    flex-basis: inherit;
+}
+
+/*.template-component-button.selected,
+.vehicle.selected {
+    background-color: #ffa800;
+    color: #fff;
+}*/
+.shops-list .tour_list_desc {border-right: none;}
+.services-list .service{left: 35px;}
+.services-list .service .template-component-booking-package-price-currency img{
+    width: 13px;
+    position: relative;
+    top: 45px;
+    opacity: .6;
+}
+.sub-services-list{width: 100%;}
+.sub-services-list .discount-section {
+    font-size: 0.7em !important;
+}
+
+.booking-section input.error,
+.booking-section li.error {
+    border: 2px solid red !important;
+}
+
+.force-top-sticky{
+	position:fixed;
+	background:#ffffff
+}
+.force-top-sticky .template-logo{display: none !important;}
+.force-top-sticky .template-logo-sticky{display: block !important;}
+
+.template-header .template-header-top.force-top-sticky .template-header-top-icon-list a:hover,
+	.template-header .template-header-top.force-top-sticky .template-component-menu-default>.sf-menu>li>a:hover,
+	.template-header .template-header-top.force-top-sticky .template-component-menu-default>.sf-menu>li>a.template-state-selected,
+	.template-header .template-header-top.force-top-sticky .template-header-top-icon-list .template-icon-meta-menu:hover:before,
+	.template-header .template-header-top.force-top-sticky .template-header-top-icon-list a:hover
+	{
+		color:#ffa800 !important;
+	}
+    
+   	.template-header .template-header-top.force-top-sticky .template-component-menu-default>.sf-menu>li>a,.template-header .template-header-top.force-top-sticky .template-component-social-icon-list a
+	{
+		color:#ffa800 !important;
+	}
+    
+    .template-content {
+        padding-top: 30px;
+    }
+.template-main{
+    padding-top:25px;
+}
+.template-content .template-section.booking-confirmation{
+	padding-left: 20px;
+}
+.template-content .template-section.booking-confirmation h3,
+.template-content .template-section.booking-confirmation h2{
+	text-transform: none;
+}
+
+.template-header .template-header-top.force-top-sticky, .template-header .template-header-top.template-header-top-static {
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.1);
+}
+.warning-msg {margin: 0 auto;
+    text-align: center;}
+.warning-msg.success{color:green;}
+.warning-msg.error{color:red;}
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    padding-top: 9px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0 !important;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc !important;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #ffa800;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.page-shops p{padding:0px !important; margin-bottom:0px !important; margin-top: 0px !important}
+.shop-price{font-size: 14px !important;color: #ffa800 !important}
+.shop-price.strike{font-size: 10px !important }
+
+.page-account .template-content{margin-top:100px;margin-bottom:100px}
+.page-account .template-content .box-body{margin-top:40px}
+.page-account .template-content .form-control {width:50% !important;}
+.page-account .template-content .form-group{padding:28px}
+.page-account .template-content .box-footer .col-md-9{    text-align: center;
+margin-top: 38px;}
+.page-account .template-content .box-footer button{
+background:#ffa800;
+border-color:#ffa800;
+}
+.help-block{color:red;margin-left:5px; font-size:13px}
+  .alert-success.fade,.alert-danger.fade {opacity:1 !important; width: 75%;
+}
+
+
+/*Mobile fixes*/
+@media (max-width: 767px) { /* Start Media*/
+
+.template-component-booking .template-component-booking-vehicle-list>li {
+	width:40% !important;
+}
+
+.template-component-booking .template-component-booking-package-list>li, 
+.template-component-booking .template-component-booking-summary>li {
+	width:100%;
+}
+
+.template-component-button {
+	margin-right:15px;
+}
+
+.tour_list_desc {
+	padding:0 !important
+}
+
+.tour_list_desc {
+	height:inherit;
+	padding:20px;
+	border:0;
+}
+
+} /* End Media */
+
+
+@media (max-width: 768px) { /* Start Media*/
+
+#features_row #desc {
+    font-size:0
+}
+
+.template-layout-25x25x25x25 {
+    text-align: center;
+}
+.rev_slider_wrapper {
+    max-height: 250px !important;
+}
+
+.template-content-layout-column-left,
+.template-content-layout-column-right {
+    width: 100%;
+}
+
+.force-top-sticky {
+    position: inherit !important;
+}
+
+} /* End Media */
+
+.price_list {
+    padding-bottom: 10px;
+}
+.price_list br {
+    display: none;
+}
+
+[name="booking-form-pickup"] {
+    user-select: none;
+    position:relative;
+    top:10px;
+}
+/*[name="booking-form-pickup"]:before {
+  content:"";
+  position: absolute;
+  top: 0px;
+  right: 50px;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border:2px solid #eee;
+
+}*/
+
+[name="booking-form-pickup"]:checked:before {
+  background-color: #eee;
+}
+
+.booking-section li * {
+   /* border-color:transparent !important*/
+}
+
+.booking-section li input:not(checkbox) {
+     background: rgba(238, 238, 238, 0.41);
+    padding:15px !important
+}
+
+.booking-section li input[type=checkbox] {
+    display:inline-block;
+}
+
+html body .home-form-sec ul.sec-one li, html body .home-form-sec ul.sec-two li {
+    margin-right:2%;
+    width: 48% !important;
+}
+.home-form-sec {
+    margin-top: 0px !important;
+    padding: 15px;
+}
+html body .home-form-sec ul.sec-three li {
+    width: 31.33% !important;
+    margin-right:2% !important;
+}
+.home-form-sec input {
+    border: 1px solid #dccece !important;
+}
+.home-form-sec ul.sec-four textarea {
+    height: 107px;
+    background: rgba(238, 238, 238, 0.41);
+    border: 1px solid #dccece !important;
+    width: 98%;
+}
+.home-form-sec .sec-five li label, .home-form-sec .sec-five li input {
+    display: inline-block;
+}
+.home-form-sec .sec-five li input {
+    width: auto;
+    float: right;
+    margin-top: 8px;
+    margin-right: 111px;
+}
+.home-form-sec .sec-five li label {
+    padding-top: 0;
+}
+.home-form-sec .sec-five li [name="booking-form-pickup"] {
+    margin-top: -24px;
+    position: relative;
+    /* top: -18px; */
+    /* left: -178px; */
+}
+
+
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1169px) {
+    .home-form-sec .sec-five li label {
+        padding-top: 0;
+        max-width: 152px;
+    }  
+}
+
+@media screen and (max-width:767px){
+html body .booking-section .home-form-sec ul li {
+    width: 100% !important;
+    margin-left: 0 !important;
+ }
+  .nopr {
+ 	margin-bottom:15px
+ }
+ .home-form-sec .sec-five li [name="booking-form-pickup"]{margin-top:-6px}
+ body > .booking-section.template-content{margin-top:0px !important}
+.page-shops .template-content{margin-top:0px !important}
+ .template-component-booking .template-component-booking-package-list>li {
+  
+    margin: 0px 40px 30px 15px;
+}
+}
+
+@media screen and (max-width:768px){
+    .tour_list_desc h2 {
+        font-size:inherit !important
+    }
+}
+body > .booking-section.template-content{margin-top:104px}
+.page-booking .tour_list_desc{border-right:0px}
+.page-shops .template-content{margin-top:104px}

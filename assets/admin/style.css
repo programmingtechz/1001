@@ -1,0 +1,147 @@
+.page-bar{
+	margin-top: 10px;
+}
+
+.clear-filters{
+	top: 6px;
+}
+
+.m_top_10{margin-top: 10px;}
+
+.pagination{margin: 5px 0;}
+
+
+/*Orders*/
+
+.order-view .top-info .info-box
+{
+	min-height: 70px;
+}
+
+.order-view .top-info .info-box .info-box-content
+{
+	padding-top: 15px;
+	text-align: center;
+	margin-left: inherit;
+}
+
+.user-info .user-selection label{top:5px;}
+.user-info .user-selection {padding-bottom: 15px;}
+
+.w50{
+    width:50px !important;
+}
+.select2{
+    width:350px !important;
+}
+
+.w350{
+     width:350px !important;
+}
+.dakUpload .btn{padding:0px !important}
+.dakUpload textarea{visibility:hidden;height: 0px;width: 0px;}
+.dakUpload .btn:after{content:"Upload";   position: absolute;
+    top: 6px;
+    left: 43px;
+}
+
+.dakUpload .btn div {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 90px !important;
+    height: 30px !important;
+}
+.dk-badge{width:100px;height:100px;margin-right: 15px;position: relative;display:inline-block;}
+.dk-badge img{width:100%;height: 100%;}
+.dakUpload .post-media{margin-top:10px;height:auto;}
+.dk-badge i{
+    position: absolute;
+        top: 0px;
+    right: 7px;
+    width: 5px;
+    height: 5px;
+}
+.dakUpload.profile_image img{
+  border-radius: 50%;
+}
+.dk-badge i:before{background: white;
+}
+
+.dk-badge img:hover {opacity: 0.7;}
+/* Style the Image Used to Trigger the Modal */
+
+/* The Modal (background) */
+.image_popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.image_popup .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+.image_popup .caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.image_popup .modal-content, .image_popup .caption { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.image_popup .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.image_popup .close:hover,
+.image_popup .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+.fc-event-container .fc-content{height: 70px;}
+ .box-info .form-control{width:45% }
+ textarea.form-control{width:75%}
