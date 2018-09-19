@@ -190,7 +190,7 @@
               </a>
             </li>
           </ul>
-</li>
+        </li>
        <li  >
           <a href="<?=site_url('pagesettings')?>">
             <i class="fa fa-align-justify"></i> <span>Page Settings</span>
@@ -231,7 +231,7 @@
             </span>
           </a>
         </li>
-        <?php endif;?>
+
         <li  >
           <a href="<?=site_url('shops')?>">
             <i class="fa fa-building"></i> <span>Shops</span>
@@ -240,6 +240,9 @@
             </span>
           </a>
         </li>
+        
+        <?php endif;?>
+        
         
         
          <?php if( all_settings('user_role') == 'admin'):?>

@@ -56,6 +56,10 @@
 					<div class="col-xs-3">Name:</div>
 					<div class="col-xs-9"><?php echo $shop_name.' ( '.$area_name.' )';?></div>
 				</div>
+				<div class="row">
+					<div class="col-xs-3">Phone:</div>
+					<div class="col-xs-9"><?php echo $shop_phone;?></div>
+				</div>
 			</div>
 		</div>
 
@@ -119,7 +123,7 @@
 			<div class="col-sm-6">
 				<div class="table-responsive">
 					<table class="table">
-						<tr>
+						<!-- <tr>
 							<th style="width:50%">Subtotal:</th>
 							<td><?php echo numberToCurrency($sub_total);?></td>
 						</tr>
@@ -128,7 +132,7 @@
 							<td>
 								<?php echo numberToCurrency($total_discount);?>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th>Total:</th>
 							<td>

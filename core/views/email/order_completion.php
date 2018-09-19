@@ -28,14 +28,14 @@ Thank you.
 		<tr><td colspan=4><hr/></td></tr>	 		
 		<?php endforeach;?>
 		
-			<tr>
+			<!-- <tr>
 				<td colspan=3 align="right">Sub-total:</td>
 				<td align="right"><?php echo displayData($cart_total, 'money'); ?></td>
 			</tr>
 			<tr>
 				<td colspan=3 align="right">Discount:</td>
 				<td align="right">-<?php echo displayData($total_discount, 'money'); ?></td>
-			</tr>
+			</tr> -->
 			<?php if($total_tax>0):?>
 			<tr>
 				<td colspan=3 align="right">Total Tax:</td>
