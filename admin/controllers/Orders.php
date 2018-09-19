@@ -266,7 +266,7 @@ class Orders extends Admin_Controller
         
         $output = array('status'=>'SUCCESS');
         
-        $orders =$this->sales_order_model->get_latest_order();
+        $orders =$this->sales_order_model->get_latest_order( $this->input->post('time'));
         $output['orders'] = $orders;
         
         echo json_encode($output);die;
