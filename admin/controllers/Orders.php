@@ -74,7 +74,7 @@ class Orders extends Admin_Controller
 		$this->data = array_merge($this->data, $order_details);
 
 		$this->data['order_total'] 	= numberToCurrency( $order_details['total_amount'] );
-		$this->data['order_date'] 	= strToDate($order_details['created_time'], 'd M Y');
+		$this->data['order_date'] 	= strToDate($order_details['service_date'], 'd M Y');
 
 		$this->data['sub_total'] = $order_details['total_amount']-$order_details['total_discount'];
 		
@@ -140,7 +140,7 @@ class Orders extends Admin_Controller
 	{
 		$data = array();
 		$data['order_status'] = $_POST['status'];
-
+        $data['payment_status'] = 'PAID';
 		$where = array(); 
 		$where['id'] = $_POST['id'];
 		
@@ -174,9 +174,26 @@ class Orders extends Admin_Controller
 		'discount' => 0,
 		'tax' 	=> 0,
 		'payment_type' => 'cash',
-		'txn_id' => ''
+		'txn_id' => '',
+        'service_date' => date('Y-m-d',strtotime($this->input->post('service_date')))
 		);
-
+        
+        $new_user = $this->input->post('new_user');
+        if( empty($data['user_id']) && !empty($new_user) ){
+             $inser_data = array();
+            $inser_data['id']   =  gen_uuid();
+            $inser_data['name']   =  "";
+            $inser_data['email']  =  "";
+            $inser_data['phone']  =  $new_user;
+            $inser_data['role'] = 'customer';
+            $inser_data['language'] = 'eng';
+            $inser_data['status'] = 'active';
+            
+            $this->users_model->insert($inser_data, 'users');
+    
+            $user_id = $inser_data['id'];
+            $data['user_id'] = $user_id;
+        }
 
 		$so_id  = $this->order_manager->create_sales_order($cart, $data);
 
@@ -198,9 +215,14 @@ class Orders extends Admin_Controller
 		$service_id = $this->input->post('service_id');
 		$vehicle_id = $this->input->post('vehicle_id');
 
-		$sql = "SELECT ss.id as item_id, ss.price, s.id, s.name  FROM shop_services  ss
+		$sql = "SELECT ss.id as item_id, ss.price, s.id, concat(s.name,'(',a.name,')') as shop_name  FROM shop_services  ss
 					JOIN shops s ON(s.id=ss.shop_id) 
+                    JOIN areas a ON(a.id=s.area_id) 
 					WHERE ss.service_id='$service_id' AND ss.vehicle_id='$vehicle_id' ";
+                    
+        if( get_current_user_role() != 'admin' ){
+          $sql .="AND s.owner_id = '".get_current_user_id()."' ";
+        }
 		//echo $sql;die;
 		$resp = $this->db->query($sql);
 

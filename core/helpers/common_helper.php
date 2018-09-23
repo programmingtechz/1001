@@ -229,7 +229,7 @@ function displayData($data = null, $type = 'string', $row = array(), $wrap_tag_o
             $data = humanize($data);
             break;
         case 'date':
-            $data =str2USDate($data);
+            $data = str2USDate($data);
             break;
         case 'datetime':
             $data = str2USDate($data);
@@ -1039,11 +1039,11 @@ function verifyEmail($toemail,$fromemail,$getdetails=false)
 }
 
 function send_sms( $numbers =array(),$message){
-    
-   $apiKey = urlencode('');
+    $CI= & get_instance();
+    $apiKey = urlencode($CI->config->item('txttolocal'));
 	
 	// Message details
-	$sender = urlencode('TXTLCL');
+	$sender = urlencode('DAKBRO');
 	$message = rawurlencode($message);
  
 	$numbers = implode(',', $numbers);
@@ -1070,6 +1070,31 @@ function send_sms( $numbers =array(),$message){
     }
 	// Process your response here
 	return $output;
+}
+
+function create_short_link($long_url,$type = 'bitly'){
+    
+    $output = "";
+    $CI= & get_instance();
+    
+    if( $type == 'bitly'){
+        $apiKey = $CI->config->item('bitlyToken');
+
+        $bitly = file_get_contents('https://api-ssl.bitly.com/v3/shorten?longUrl='.urlencode($long_url).'&domain=bit.ly&format=json&access_token='.$apiKey);
+    
+        $shortDWName = json_decode($bitly,true);
+        
+        $output= ( isset($shortDWName['status_code']) && $shortDWName['status_code'] == 200 && isset($shortDWName['data']['url']) )?$shortDWName['data']['url']:'';
+    }
+    
+    return $output;                       
+}
+
+function get_google_form_link($phone="",$order_no=""){
+    $CI= & get_instance();
+    $googleUrl = $CI->config->item('googleUrl');
+    $str = $googleUrl."?entry.104410027=".$phone."&entry.715125242=".$order_no;
+    return $str;
 }
 
 ?>

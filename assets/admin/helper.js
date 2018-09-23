@@ -1486,7 +1486,10 @@ var orderManager = {};
             source:  function (query, process) {
                         return $.getJSON(base_url + 'users/get_users', { query: query }, function (data) {
                             console.log(data);
-
+                            $('.user-info .user-name').html('-');
+                            $('.user-info .email').html('-');
+                            $('.user-info .phone').html('');
+                            $('input[name="user_id"]').val("");
                             var users = [];
                             for(var user of data){
                                 users.push(user);
@@ -1502,9 +1505,13 @@ var orderManager = {};
         });
 
         $input.change(function() {
-          var current = $input.typeahead("getActive");          
-          module.displayUserInfo(current);
-          $('input[name="user_id"]').val(current.id);
+          var current = $input.typeahead("getActive");
+          
+          if (current.name == $input.val()) {
+              module.displayUserInfo(current);
+              $('input[name="user_id"]').val(current.id);
+          }          
+          
         });
     };
 
@@ -1563,7 +1570,7 @@ var orderManager = {};
 
             $shop.html( $('<option>', {value:'', text: 'Select'}) );
             for(var shop of data){
-                $shop.append( $('<option>', {value:shop.id, text: shop.name, 'data-price':shop.price, 'data-item-id': shop.item_id}) );
+                $shop.append( $('<option>', {value:shop.id, text: shop.shop_name, 'data-price':shop.price, 'data-item-id': shop.item_id}) );
             }
 
             $('#add-item-form select[name="shop_id"]').trigger('change');
@@ -1673,7 +1680,7 @@ var orderManager = {};
         $.each( cartData, function( key, item ) {
             $row = $('<tr>');
             $row.append( $('<td>', {text: item.name}) );
-            $row.append( $('<td>', {text: item.qty}) );
+            //$row.append( $('<td>', {text: item.qty}) );
             $row.append( $('<td>', {html: module.formatData(item.price, 'money')}));
 
             var item_total = (item.qty*item.price);
@@ -1706,12 +1713,13 @@ var orderManager = {};
         var shop_id = $('input[name="shop"]').val();
         var vehicle_model = $('input[name="vehicle_model"]').val();
         var vehicle_number = $('input[name="vehicle_number"]').val();
-
-        if(user_id == ''){
+        var new_user = $.trim($(".user-selection .typeahead").val());
+        var service_date = $('input[name="service_date"]').val();
+        if(user_id == '' && new_user == ""){
             EC.UI.alert('Please select user.', 3000);
             return;
         }
-
+        
         if(shop_id == ''){
             EC.UI.alert('Please add service.', 3000);
             return;
@@ -1726,7 +1734,13 @@ var orderManager = {};
             EC.UI.alert('Please enter vehicle number.', 3000);
             return;
         }
-
+        
+        if(service_date == ''){
+            EC.UI.alert('Please enter Service date.', 3000);
+            return;
+        }
+var $loader = $('<div class="loading">Loading&#8230;</div>');
+		$('body').append($loader);
         var request = {
                 type: 'POST',
                 url: base_url+'orders/create',
@@ -1735,12 +1749,14 @@ var orderManager = {};
                     shop_id: shop_id,
                     vehicle_model: vehicle_model,
                     vehicle_number: vehicle_number,
-                    message: ''
+                    message: '',
+                    new_user:(user_id == "")?new_user:"",
+                    service_date:service_date
                 }
             };
             
         EC.server.request(request, function (resp)
-        {
+        {$('body .loading').remove();
             var data = JSON.parse( resp );
             
             if(data.status == 'SUCCESS'){
@@ -1804,7 +1820,7 @@ var orderManager = {};
     
      $('.js-example-basic-single').select2();
 
-    $('.datetpicker').datepicker({format:'dd/mm/yyyy'});    
+    $('.datetpicker').datepicker({format:'yyyy-mm-dd'});    
     orderManager.initUserSelection();
    
 })(jQuery); 

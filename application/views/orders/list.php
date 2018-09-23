@@ -12,7 +12,7 @@
 					<thead>
 						<tr>
 							<th>Order ID</th>
-							<th>Order Date</th>
+							<th>Service Date</th>
 							<th>Shop Name</th>
                             <th>Branch</th>
 							<th>Amount</th>
@@ -25,7 +25,7 @@
 						<?php foreach($orders as $order):?>
 							<tr>
 								<td><?php echo $order['so_id'];?></td>
-								<td><?php echo $order['created_time'];?></td>
+								<td><?php echo date('d/m/y',strtotime($order['service_date']));?></td>
 								<td><?php echo $order['shop_name'];?></td>
                                 <td><?php echo $order['branch'];?></td>
 								<td><?php echo numberToCurrency($order['total_amount']);?></td>

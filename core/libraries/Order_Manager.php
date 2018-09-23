@@ -93,6 +93,7 @@ class Order_Manager
 			  					'message'       => $data['message'],
 			  					'pickup'       	=> $data['pickup'],
 			  					'donate'       	=> $data['donate'],
+                                'service_date'  => $data['service_date'],
 			  					'created_id' 	=> $created_id,
 								'updated_id' 	=> $created_id,
 			  					'created_time' => $created_time

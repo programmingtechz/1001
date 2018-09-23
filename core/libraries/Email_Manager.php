@@ -165,7 +165,14 @@ class Email_Manager
 		$customer_phone = $data['phone'];
 		if ($customer_phone !== '') {
 			// send mail to customer
-			$smsmsg = "Dear Customer,\nYour vehicle service ".$data['so_id']." is completed. \nThank you,\nDakbro Team";
+            $form_link = get_google_form_link($customer_phone,$data['so_id']);
+            
+            $short_link = create_short_link($form_link);
+            if( $short_link )
+                $link = "Visit $short_link for feedback.\n";
+            else 
+             $link="";
+			$smsmsg = "Dear Customer,\nYour vehicle service ".$data['so_id']." is completed. \n".$link."Thank you,\nDakbro Team";
 			
 	        $sms = send_sms(array($customer_phone),$smsmsg);
 		}		

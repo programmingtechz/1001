@@ -1,4 +1,8 @@
 <section class="content-header">
+	<div class="page-bar">
+  			<?php echo set_breadcrumb(); ?>
+  		</div>
+        <br />  <br />
   	<h1>Create Sales Order</h1>
 </section>
 
@@ -56,8 +60,7 @@
 				<thead>
 					<tr>
 						<th>Product</th>
-						<th>Qty</th>
-						<th>Unit Price</th>
+						<th>Price</th>
 						<th>Total</th>
 						<th>Action</th>
 					</tr>
@@ -107,7 +110,7 @@
 						<th class="">
 							<div class="form-group">
 				                <div class='input-group date datetpicker' >
-				                    <input type='text' name="service_date" class="form-control" />
+				                    <input type='text' name="service_date" value="<?=date('Y-m-d')?>" class="form-control" />
 				                    <span class="input-group-addon">
 				                        <span class="glyphicon glyphicon-calendar"></span>
 				                    </span>

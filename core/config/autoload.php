@@ -104,7 +104,7 @@ $autoload['helper'] = array('html','url','date','layout','common','breadcrumb');
 |
 */
 
-$autoload['config'] = array('layout');
+$autoload['config'] = array('layout','customconfig');
 
 
 /*

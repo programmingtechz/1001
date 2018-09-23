@@ -1,12 +1,14 @@
 	
 <section class="content-header">
-  	<h1>
+  	
+  	<div class="page-bar">
+  			<?php echo set_breadcrumb(); ?>
+  		</div>
+        <br />  <br />
+        <h1>
     Sales Order: <?php echo $so_id; ?>
     <!-- <small>advanced tables</small> -->
   	</h1>
-  	<!-- <div class="page-bar">
-  			<?php echo set_breadcrumb(); ?>
-  		</div> -->
 </section>
 
 
@@ -52,7 +54,7 @@
 				<!-- <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span> -->
 
 				<div class="info-box-content">
-					<span class="info-box-text">Order Date</span>
+					<span class="info-box-text">Service Date</span>
 					<span class="info-box-number"><?php echo $order_date;?></span>
 				</div>
 				<!-- /.info-box-content -->
@@ -138,7 +140,7 @@
 					<tr>
 						<th>Service</th>
 						<!-- <th>Qty</th> -->
-						<th>Unit Price</th>
+						<th>Price</th>
 						<th>Total</th>
 					</tr>
 				</thead>
@@ -238,9 +240,11 @@ function updateOrderStatus()
 	};
 
 	console.log(params);
-
+    var $loader = $('<div class="loading">Loading&#8230;</div>');
+		$('body').append($loader);
 	$.post(base_url+'orders/updateOrderStatus', params, function(resp){
 		console.log(resp);
+        $('body .loading').remove();
 		alert('Updated successfully!.');
 		location.reload()
 	}, 'json');

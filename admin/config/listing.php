@@ -78,7 +78,8 @@ $config['orders_index'] = array(
 						'total_amount'=>array('name'=>'Amount', 'data_type' => 'money', 'sortable' => true, 'default_view'=>1),
 						'shop_name'=>array('name'=>'Shop', 'data_type' => 'string', 'sortable' => true, 'default_view'=>1),
                         'area'=>array('name'=>'Area', 'data_type' => 'string', 'sortable' => true, 'default_view'=>1),
-                        'created_time'=>array('name'=>'Date', 'data_type' => 'date', 'sortable' => true, 'default_view'=>1)
+                        'service_date'=>array('name'=>'Service Date', 'data_type' => 'date', 'sortable' => true, 'default_view'=>1),
+                        'created_time'=>array('name'=>'Created', 'data_type' => 'date', 'sortable' => true, 'default_view'=>1)
 						),
 
 	"default_order"	=> "so_id",

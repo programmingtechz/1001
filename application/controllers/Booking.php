@@ -98,7 +98,7 @@ class Booking extends App_Controller {
       $is_holiday = $this->is_holiday($timestamp,$order_info['shop_id']);
       
       if($is_holiday !== FALSE){
-        throw new Exception('Please change booking date as it is holiday: '.$is_holiday['reason']);        
+        throw new Exception('Please change booking date: '.$is_holiday['reason']);        
       }
 
       
@@ -148,7 +148,7 @@ class Booking extends App_Controller {
         }
       }
 
-      if(!(int)$user_id){
+      if(!$user_id){
         $inser_data = array();
         $inser_data['id']   =  gen_uuid();
         $inser_data['name']   =  $name;
@@ -178,6 +178,7 @@ class Booking extends App_Controller {
         'message' => $this->input->post('message'),
         'vehicle_number' => $this->input->post('vehicle_number'),
         'vehicle_model' => $this->input->post('vehicle_model'),
+        'service_date' => date('Y-m-d',$this->input->post('booking_date')),
         'pickup' => $this->input->post('pickup'),
         'donate' => $this->input->post('donate')
       );
@@ -186,7 +187,7 @@ class Booking extends App_Controller {
 
       $user = $this->users_model->get_user_information_by_phone_no($phone);
       $this->session->set_userdata('logged_user_data',$user);
-      $this->session->set_userdata('logged_phone_no',$phone_no);
+      $this->session->set_userdata('logged_phone_no',$phone);
 
       if( $so_id === FALSE ){
         throw new Exception($this->error_message);        
