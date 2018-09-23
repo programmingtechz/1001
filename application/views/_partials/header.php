@@ -22,7 +22,7 @@
                             <ul class="sf-menu">
                                 <li><a href="<?=site_url("home")?>" class="template-state-selected">Home</a></li>
                                   <li>
-                                    <a href="<?=site_url('services')?>">Services</a>
+                                    <a href="<?=site_url('services')?>">Services/Memebership</a>
                                     <ul>
                                     <?php foreach( get_services(array('type'=>'bike','parent_id'=>0),"name",false) as $k => $v ):?>
                                         <li><a href="<?=site_url('services/detail/'.str_replace(' ','-',$v['name']))?>"><?=ucwords($v['name'])?></a></li>

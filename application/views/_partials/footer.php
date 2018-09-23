@@ -14,7 +14,7 @@
                         </div>
                         <!-- Center left column -->
                         <div class="template-layout-column-center-left">
-                            <h6>Services</h6>
+                            <h6>Services/Memebership</h6>
                             <ul class="template-list-reset">
                              <?php foreach( get_services(array('type'=>'bike','parent_id'=>0),"name",false) as $k => $v ):?>
                             <li><a href="<?=site_url('services/detail/'.str_replace(' ','-',$v['name']))?>"><?=ucwords($v['name'])?></a></li>
