@@ -5249,7 +5249,7 @@ button[name="login-prev"]{width:68px;margin-bottom: 15px;}
 
 @media (min-width: 769px) { /* Start Media*/ 
 .template-header .template-header-top .template-header-top-icon-list {
-    top: 50px;
+    top: 30px;
     right: 15px;
 }
 /*End Media*/}

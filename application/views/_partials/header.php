@@ -22,7 +22,7 @@
                             <ul class="sf-menu">
                                 <li><a href="<?=site_url("home")?>" class="template-state-selected">Home</a></li>
                                   <li>
-                                    <a href="<?=site_url('services')?>">Services/Memebership</a>
+                                    <a href="<?=site_url('services')?>">Services/<br/>Memebership</a>
                                     <ul>
                                     <?php foreach( get_services(array('type'=>'bike','parent_id'=>0),"name",false) as $k => $v ):?>
                                         <li><a href="<?=site_url('services/detail/'.str_replace(' ','-',$v['name']))?>"><?=ucwords($v['name'])?></a></li>
@@ -45,9 +45,7 @@
                                 <li>
                                     <a href="<?=site_url('contact')?>">Contact</a>
                                 </li>
-                                <li>
-                                    <a href="<?=site_url('social')?>">Social Activities</a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </nav>
@@ -58,7 +56,7 @@
                                 <li><a href="<?=site_url("home")?>" class="template-state-selected">Home</a></li>
                                 
                                 <li>
-                                    <a href="<?=site_url('services')?>">Services</a>
+                                    <a href="<?=site_url('services')?>">Services/Memebership</a>
                                     <ul>
                                     <?php foreach( get_services(array('type'=>'bike','parent_id'=>0),"name",false) as $k => $v ):?>
                                         <li><a href="<?=site_url('services/detail/'.str_replace(' ','-',$v['name']))?>"><?=ucwords($v['name'])?></a></li>
@@ -82,7 +80,10 @@
                 <div class="template-header-top-icon-list template-component-social-icon-list-1">
             
                     <ul class="template-component-social-icon-list">
-                    <li><a href="#" class="template-icon-meta-menu"></a></li>
+                    <li><a href="#" class="template-icon-meta-menu"><span style="font-size: 12px;vertical-align: middle;position: relative;top: -5px;left: 10px;">Menu</span></a></li>
+                    
+                    </ul>
+                    <ul class="template-component-social-icon-list">
                     
                        <li>    <?php $user_data = is_front_end_logged_in();
                         if($user_data):?>
