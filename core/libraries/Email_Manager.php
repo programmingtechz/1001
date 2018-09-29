@@ -165,7 +165,7 @@ class Email_Manager
 		$customer_phone = $data['phone'];
 		if ($customer_phone !== '') {
 			// send mail to customer
-            $form_link = get_google_form_link($customer_phone,$data['so_id']);
+            $form_link = get_google_form_link($customer_phone,$data['so_id'],$data['shop_name']."(".$data['area_name'].")");
             
             $short_link = create_short_link($form_link);
             if( $short_link )

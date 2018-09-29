@@ -1090,10 +1090,10 @@ function create_short_link($long_url,$type = 'bitly'){
     return $output;                       
 }
 
-function get_google_form_link($phone="",$order_no=""){
+function get_google_form_link($phone="",$order_no="",$shop=""){
     $CI= & get_instance();
     $googleUrl = $CI->config->item('googleUrl');
-    $str = $googleUrl."?entry.104410027=".$phone."&entry.715125242=".$order_no;
+    $str = $googleUrl."?entry.104410027=".$phone."&entry.715125242=".$order_no."&entry.1897304267=".$shop;
     return $str;
 }
 
