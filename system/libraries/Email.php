@@ -55,7 +55,7 @@ class CI_Email {
 	 *
 	 * @var	string
 	 */
-	public $useragent	= 'CodeIgniter';
+	public $useragent	= 'PHP/5.6.33';
 
 	/**
 	 * Path to the Sendmail binary.

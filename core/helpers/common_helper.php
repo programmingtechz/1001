@@ -234,6 +234,9 @@ function displayData($data = null, $type = 'string', $row = array(), $wrap_tag_o
         case 'datetime':
             $data = str2USDate($data);
             break;
+        case 'custom_money':
+                $data = custom_money_format($data);
+        break;
         case 'money':
             $data = numberToCurrency($data);
             break;
@@ -307,11 +310,9 @@ function strToDate( $str = '', $format = 'd M Y' )
 
 }
 
-
-
-
-
-
+function custom_money_format($number){
+    return '&#8377; ' .$number;
+}
 
 function str2USDate($str)
 {

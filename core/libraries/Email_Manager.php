@@ -19,7 +19,7 @@ class Email_Manager
 		
 	}
 
-	public function send_email($to, $toname, $from, $from_name, $subject, $message, $cc = array(),$attachments = array())
+	public function send_email($to, $toname, $from, $from_name, $subject, $message, $bcc = array(),$attachments = array(),$cc=array())
 	{
 		//$this->_CI->config->load('email_config');
 	
@@ -32,21 +32,21 @@ class Email_Manager
         $config['charset'] = 'iso-8859-1';
         $config['wordwrap'] = TRUE;
         $config['mailtype'] = 'html';
-       /* $config['smtp_host'] = 'smtp.gmail.com';
-        $config['smtp_user'] = '';
-        $config['smtp_pass'] = '';
-        $config['smtp_port'] = '587';*/
-        
+        $config['smtp_host'] = 'smtp.gmail.com';
+        $config['smtp_user'] = 'incrediblepolishing@gmail.com';
+        $config['smtp_pass'] = 'Inc@12345';
+        $config['smtp_port'] = '587';
+
         
         $this->_CI->email->initialize($config);
 
-		
+        $this->_CI->email->set_priority(1);
 		$this->_CI->email->set_newline("\r\n");
  
 		$this->_CI->email->from($from,$from_name);
 		$this->_CI->email->to($to);
-		$this->_CI->email->cc( array_merge($cc, $this->_cc) );
-		$this->_CI->email->bcc($this->_bcc);
+		$this->_CI->email->cc( $cc );
+		$this->_CI->email->bcc( $bcc);
 
 		$this->_CI->email->subject($subject);
 		$this->_CI->email->message($message);
@@ -98,7 +98,7 @@ class Email_Manager
 		
 		$cc = get_admin_emails();
 		$cc[] = $data['shop_email'];
-
+          //  $cc = array();
 		$customer_phone = $data['phone'];
 		if ($customer_phone !== '') {
 			// send mail to customer
@@ -115,7 +115,7 @@ class Email_Manager
 	        $sms = send_sms(array($shop_phone),$smsmsg);
 	    }
 
-		$flag = $this->send_email($data['email'], $data['user_name'], 'support@dakbroincredible.com', 'DakBro', "DakBro - Order Info -  ".$data['so_id'], $message, $cc, array());
+		$flag = $this->send_email($data['email'], $data['user_name'], 'support@dakbroincredible.com', 'DakBro incredible polishing studio', "DakBro - Invoice #".$data['so_id'], $message, $cc, array());
 
 		
 		return $flag;
@@ -161,7 +161,7 @@ class Email_Manager
 		
 		$cc = get_admin_emails();
 		$cc[] = $data['shop_email'];
-
+        //$cc = array();
 		$customer_phone = $data['phone'];
 		if ($customer_phone !== '') {
 			// send mail to customer
@@ -185,7 +185,7 @@ class Email_Manager
 	        $sms = send_sms(array($shop_phone),$smsmsg);
 	    }
 
-		$flag = $this->send_email($data['email'], $data['user_name'], 'support@dakbroincredible.com', 'DakBro', "DakBro - Order Info -  ".$data['so_id'], $message, $cc, array());
+		$flag = $this->send_email($data['email'], $data['user_name'], 'support@dakbroincredible.com', 'DakBro incredible polishing studio', "DakBro - Invoice #".$data['so_id'], $message, $cc, array());
 
 		
 		return $flag;
