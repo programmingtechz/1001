@@ -58,8 +58,9 @@
                 </table>
             </div>
             <div style="text-align: center; font-size: 12px; color: #b2b2b5; margin-top: 20px">
-                <p> Powered by DakBro Incredible Polishing Studio
+                <p>DakBro Incredible Polishing Studio
                     <br>
+                    4B Shanthi Colony, 7th main Rd,NAC Jewellery adjacent street,Anna Nagar, Chennai 600040<br>
                     <a href="https://dakbroincredible.com/index.php/unsubscribe/index/<?=$email?>" style="color: #b2b2b5; text-decoration: underline;">Unsubscribe</a> </p>
             </div>
         </div>
