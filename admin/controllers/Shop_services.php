@@ -12,7 +12,7 @@ class Shop_services extends Admin_Controller
     
     $this->load->model('shop_services_model');
     $request_uri = (isset($_SERVER['HTTP_REFERER']))?explode('/',$_SERVER['HTTP_REFERER']):array();
-    $this->shop_id = ($this->input->is_ajax_request())?( ( isset($request_uri[8]))?$request_uri[8]:""):$this->uri->segment(3);
+    $this->shop_id = ($this->input->is_ajax_request())?( ( isset($request_uri[7]))?$request_uri[7]:""):$this->uri->segment(3);
     
     if( empty($this->shop_id) && strpos($_SERVER['REQUEST_URI'],'/bulk_actions') === false) redirect('shops');
   }
@@ -78,7 +78,7 @@ class Shop_services extends Admin_Controller
      $action = $_POST['bulk_action'];
      
       $request_uri = (isset($_SERVER['HTTP_REFERER']))?explode('/',$_SERVER['HTTP_REFERER']):array();
-      $this->shop_id = ( isset($request_uri[8]))?$request_uri[8]:"";
+      $this->shop_id = ( isset($request_uri[7]))?$request_uri[7]:"";
      
      switch( $action ){
         
