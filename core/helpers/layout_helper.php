@@ -42,7 +42,7 @@ function include_javascripts()
         } else {
             $href =  base_path();
             $href .= $CI->layout->get_js_dir() ? $CI->layout->get_js_dir() . '/' : '';
-            $href .= $file_name . '.js';
+            $href .= $file_name . '.js?ver=1.0';
         }
         echo '<script type="text/javascript" src="' . $href . '"></script>' . "\n";
     }

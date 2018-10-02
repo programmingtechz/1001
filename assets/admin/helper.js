@@ -1537,8 +1537,11 @@ var orderManager = {};
                 var sid = $(this).val();
                 if(sid && sid !== ''){
                     var itemPrice = $(this).find('option[value="'+sid+'"]').attr('data-price');
+                    var discount = $(this).find('option[value="'+sid+'"]').attr('data-discount');
+                    discount = parseInt(discount);
+				    var dicounted_price = (!isNaN(discount) && discount)?(itemPrice - ((itemPrice*discount)/100)): itemPrice;
                     console.log('itemPrice', itemPrice);
-                    $('.item-price').html( module.formatData(itemPrice, 'money') );
+                    $('.item-price').html( module.formatData(dicounted_price, 'money') );
                 }
                 else{
                     $('.item-price').html( '' );
@@ -1570,7 +1573,7 @@ var orderManager = {};
 
             $shop.html( $('<option>', {value:'', text: 'Select'}) );
             for(var shop of data){
-                $shop.append( $('<option>', {value:shop.id, text: shop.shop_name, 'data-price':shop.price, 'data-item-id': shop.item_id}) );
+                $shop.append( $('<option>', {value:shop.id, text: shop.shop_name, 'data-price':shop.price,'data-discount':shop.discount, 'data-item-id': shop.item_id}) );
             }
 
             $('#add-item-form select[name="shop_id"]').trigger('change');
@@ -1599,7 +1602,7 @@ var orderManager = {};
         }
 
         if(!shop_id || shop_id == ''){
-            EC.UI.alert('Please slect shop.', 3000);
+            EC.UI.alert('Please select shop.', 3000);
             return;
         }
 

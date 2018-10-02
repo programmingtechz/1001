@@ -215,7 +215,7 @@ class Orders extends Admin_Controller
 		$service_id = $this->input->post('service_id');
 		$vehicle_id = $this->input->post('vehicle_id');
 
-		$sql = "SELECT ss.id as item_id, ss.price, s.id, concat(s.name,'(',a.name,')') as shop_name  FROM shop_services  ss
+		$sql = "SELECT ss.id as item_id, ss.price,ss.discount, s.id, concat(s.name,'(',a.name,')') as shop_name  FROM shop_services  ss
 					JOIN shops s ON(s.id=ss.shop_id) 
                     JOIN areas a ON(a.id=s.area_id) 
 					WHERE ss.service_id='$service_id' AND ss.vehicle_id='$vehicle_id' ";
@@ -252,11 +252,13 @@ class Orders extends Admin_Controller
 			if($item_id){
 				$item_data = $this->shop_services_model->get_item_data($item_id);
 			}
-
+            
+             $discount = $item_data['price']*($item_data['discount']/100);
+             
 			$data = array(
 			'id'      => $item_id,
 			'qty'     => $qty,
-			'price'   => $item_data['price'],
+			'price'   => ($item_data['price']-$discount),
 			'name'    => $item_data['service_name']
 			);
 

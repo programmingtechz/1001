@@ -89,7 +89,7 @@ class Booking extends App_Controller {
     //echo json_encode($this->input->post());
     $output = array('status' => 'success');
     try{
-
+        $this->cart->destroy();
       //Order Info
       $order_info = $this->input->post('order_info');
 
