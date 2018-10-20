@@ -153,11 +153,132 @@ class Sales_order_model extends App_model
 		$result = $this->db->query($query);
 
 		return $result->result_array();
-        
-       
     }
-
-
+    
+    
+    public function get_totalOrders_count( $shop_id = ""){
+    
+        $this->db->select('count(so.id) as total ');
+        $this->db->from('sales_order so');
+        $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
+        
+        if( get_current_user_role() != 'admin' ){
+            $this->db->where('s.owner_id',get_current_user_id());
+        }
+        
+        if( $shop_id ){
+            $this->db->where('s.id',$shop_id);
+        }
+        
+        $res = $this->db->get()->row_array();
+        return ($res['total'])?$res['total']:0;
+  }
+  
+  public function get_totalpendingOrders_count( $shop_id = "",$start="",$end="" ){
+    
+    $this->db->select('count(so.id) as total ');
+    $this->db->from('sales_order so');
+    $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
+    $this->db->where('so.order_status','ACCEPTED');
+    if( get_current_user_role() != 'admin' ){
+        $this->db->where('s.owner_id',get_current_user_id());
+    }
+    if( $shop_id ){
+        $this->db->where('s.id',$shop_id);
+    }
+    
+    if( $start ){
+        $this->db->where('so.so_id >=',$start,false);
+    }
+    
+    if( $end ){
+        $this->db->where('so.so_id <=',$end,false);
+    }
+        
+    $res = $this->db->get()->row_array();
+    
+    return ($res['total'])?$res['total']:0;
+  }
+  
+  public function get_totalCompletedOrders_count( $shop_id = "",$start="",$end="" ){
+    
+    $this->db->select('count(so.id) as total ');
+    $this->db->from('sales_order so');
+    $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
+    $this->db->where('so.order_status','COMPLETED');
+    
+    if( get_current_user_role() != 'admin' ){
+        $this->db->where('s.owner_id',get_current_user_id());
+    }
+    
+    if( $shop_id ){
+        $this->db->where('s.id',$shop_id);
+    }
+    
+     
+    if( $start ){
+        $this->db->where('so.so_id >=',$start,false);
+    }
+    
+    if( $end ){
+        $this->db->where('so.so_id <=',$end,false);
+    }
+    
+    $res = $this->db->get()->row_array();
+    return ($res['total'])?$res['total']:0;
+  }
+  
+  public function get_totalordersAmount( $shop_id = "" ){
+    
+    $this->db->select('sum(so.total_amount) as total ');
+    $this->db->from('sales_order so');
+    $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
+    $this->db->where('so.payment_status','PAID');
+    
+    if( get_current_user_role() != 'admin' ){
+        $this->db->where('s.owner_id',get_current_user_id());
+    }
+    
+    if( $shop_id ){
+        $this->db->where('s.id',$shop_id);
+    }
+    
+    $res = $this->db->get()->row_array();
+    return ($res['total'])?$res['total']:0;
+  }
+  
+  function get_latest_sales_orders( $shop_id = "",$start="",$end="" ){
+    
+    $this->db->select('so.so_id,so.order_status,so.id ');
+    $this->db->from('sales_order so');
+    $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
+    
+    if( get_current_user_role() != 'admin' ){
+        $this->db->where('s.owner_id',get_current_user_id());
+    }
+    
+    if( $shop_id ){
+        $this->db->where('s.id',$shop_id);
+    }
+    
+     
+    if( $start ){
+        $this->db->where('so.so_id >=',$start,false);
+    }
+    
+    if( $end ){
+        $this->db->where('so.so_id <=',$end,false);
+    }
+    
+    if( empty($start) && empty($end))
+    {
+        $this->db->limit(5);
+        $this->db->order_by("so.so_id", "DESC");
+    }
+   
+    $res = $this->db->get()->result_array();
+    return $res;
+  }
 
 	
 }

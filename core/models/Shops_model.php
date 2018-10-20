@@ -73,6 +73,19 @@ class shops_model extends App_model
     $this->db->where("id",$id);
     return $this->db->get()->row_array();
   }
+  
+  function get_shop_list_by_user( $field_name = '*' ){
+    
+    $this->db->select($field_name);
+    $this->db->from($this->_table);
+    $this->db->join('areas as a', 'a.id = shops.area_id', 'left',false);
+    
+    if( get_current_user_role() != 'admin' ){
+        $this->db->where('shops.owner_id',get_current_user_id());
+    }
+    return $this->db->get()->result_array();
+    
+  }
 
 
   

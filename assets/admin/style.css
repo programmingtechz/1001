@@ -265,3 +265,21 @@
     transform: rotate(360deg);
   }
 }
+.cal_list .fc-event-container .fc-content{height:17px;}
+.custom_loader {
+   border: 4px solid #bbb;
+   border-radius: 50%;
+   border-top: 4px solid orange;
+   width: 40px;
+   height: 40px;
+   -webkit-animation: spin 2s linear infinite; /* Safari */
+   animation: spin 2s linear infinite;
+   top: 30%;
+   left: 39%;
+   position: absolute;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
