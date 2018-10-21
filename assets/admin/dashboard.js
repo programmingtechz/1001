@@ -8,6 +8,8 @@ var dashboardManager = {};
     var orders_pie_lement = $('.all_orders_pie');
     var $latest_orders_element = $('.latest_orders');
     var $calendar_orders_element = $('.cal_orders');
+    var orders_line_element = $('.all_orders_line');
+    var orders_revenue_element = $('.all_orders_revenue');
     
     module.init = function( refresh ){
          
@@ -24,14 +26,16 @@ var dashboardManager = {};
              shop_id = $('.shop_select').val();
          }
          
-         module.order_Status();
-         module.orders_pie_graph();
-         module.latest_orders();
-         module.orders_calendar_list();
+         module.order_Status(refresh);
+         module.orders_pie_graph(refresh);
+         module.latest_orders(refresh);
+         module.orders_calendar_list(refresh);
+         module.orders_line_graph(refresh);
+         module.revenue_pie_graph(refresh);
         
     }
     
-    module.order_Status = function(){
+    module.order_Status = function( refresh ){
         
         $order_stats_element.find('.custom_loader').removeClass('hide');
         module.api_req({
@@ -54,20 +58,82 @@ var dashboardManager = {};
         });
     }
     
-    module.orders_line_graph = function(){
+    module.orders_line_graph = function(refresh){
+  
+        orders_line_element.find('.custom_loader').removeClass('hide');
         
+        if( !refresh){
+            
+            var start = moment().subtract(29, 'days').unix();
+            var end = moment().unix();
+            
+            orders_line_element.find('.date-range').find('span').attr('data-start',start).attr('data-end',end);
+            module.date_range_picker( orders_line_element.find('.date-range'),start,end,function($start_date,$end_date){
+                load_line_chart($start_date,$end_date,true);
+            } );
+            
+            orders_line_element.find('.status_select').select2();
+         
+             orders_line_element.find('.status_select').on('change',function(){
+                
+                module.orders_line_graph(true);
+             });
+            
+        }
+        
+        function load_line_chart($start_date,$end_date,refresh) {
+            
+                module.api_req({
+                action:"orders_line",
+                shop_id:shop_id,
+                start_date:$start_date,
+                end_date:$end_date,
+                status:orders_line_element.find('.status_select').val()
+            },function(resp){
+                orders_line_element.find('.custom_loader').addClass('hide');
+                var data = (resp.data)?resp.data:{};        
+                
+                if( data.length == 0){
+                    data = [{y:'No Data',item1:0}]
+                }
+                
+                if( refresh ){
+                    window['orders_line_chart'].setData( data );
+                }else{
+                     window['orders_line_chart'] = new Morris.Line({
+                                  element: orders_line_element.find('.chart-graph'),
+                                  resize: true,
+                                  data: data,
+                                  xkey: 'y',
+                                  ykeys: ['item1'],
+                                  labels: ['Orders'],
+                                  lineColors: ['#3c8dbc'],
+                                  hideHover: 'auto'
+                                });
+                }
+            }); 
+        }
+        $start_date = (start)?start:orders_line_element.find('.date-range').find('span').attr('data-start');
+        $end_date = (end)?end:orders_line_element.find('.date-range').find('span').attr('data-end');
+        load_line_chart($start_date,$end_date,refresh); 
      
               
     }
     
-    module.orders_calendar_list = function(){
+    module.orders_calendar_list = function( refresh ){
                
                 setTimeout(function(){
+                    
+                    if( refresh ){
+                       $calendar_orders_element.find('.cal_list').fullCalendar( "refetchEvents" );
+                        return;
+                    }
+                    
                      $calendar_orders_element.find('.cal_list').fullCalendar({
                           header    : {
                             left  : 'prev,next today',
                             center: 'title',
-                            right : 'month,agendaWeek,agendaDay'
+                            right : 'month'
                           },
                           buttonText: {
                             today: 'today',
@@ -114,9 +180,10 @@ var dashboardManager = {};
 
     }
     
-    module.latest_orders = function(){
+    module.latest_orders = function( refresh ){
         
         $latest_orders_element.find('.custom_loader').removeClass('hide');
+        $latest_orders_element.find('.todo-list').html("");
         
         module.api_req({
             action:"latest_orders",
@@ -129,7 +196,7 @@ var dashboardManager = {};
                 for( var i=0; i<data.length ; i++){
                     var status = (data[i]['order_status'] == "ACCEPTED")?"danger":"success";
                     var str ="<li>";
-                    str +='<span class="text">Order no: #<u><a href="'+base_url+'orders/view/'+data[i]['id']+'">'+data[i]['so_id']+'</a></u> Booked Date: '+moment(data[i]['so_id']*1000).format('DD/MM/YYYY')+'</span>';
+                    str +='<span class="text">Order no: #<u><a target="_blank" href="'+base_url+'orders/view/'+data[i]['id']+'">'+data[i]['so_id']+'</a></u> Booked Date: '+moment(data[i]['so_id']*1000).format('DD/MM/YYYY')+'</span>';
                     str +='<small class="label label-'+status+'"><i class="fa fa-clock-o"></i> '+data[i]['order_status']+'</small>';
                     str +='</li>';
                     
@@ -187,10 +254,52 @@ var dashboardManager = {};
         }
         $start_date = (start)?start:orders_pie_lement.find('.date-range').find('span').attr('data-start');
         $end_date = (end)?end:orders_pie_lement.find('.date-range').find('span').attr('data-end');
-        load_pie_chart($start_date,$end_date); 
+        load_pie_chart($start_date,$end_date,refresh); 
     }
     
-    module.revenue_pie_graph = function(){
+    module.revenue_pie_graph = function(refresh){
+        
+        orders_revenue_element.find('.custom_loader').removeClass('hide');
+        
+        if( !refresh){
+            
+            var start = moment().subtract(29, 'days').unix();
+            var end = moment().unix();
+            
+            orders_revenue_element.find('.date-range').find('span').attr('data-start',start).attr('data-end',end);
+            module.date_range_picker( orders_revenue_element.find('.date-range'),start,end,function($start_date,$end_date){
+                load_pie_chart($start_date,$end_date,true);
+            } );
+        }
+        
+        function load_pie_chart($start_date,$end_date,refresh) {
+            
+                module.api_req({
+                action:"total_revenue",
+                shop_id:shop_id,
+                start_date:$start_date,
+                end_date:$end_date
+            },function(resp){
+                orders_revenue_element.find('.custom_loader').addClass('hide');
+                var data = (resp.data)?resp.data:{};        
+                console.log(data);
+                
+                if( refresh ){
+                    window['orders_pie_chart'].setData( data );
+                }else{
+                     window['orders_pie_chart'] = new Morris.Donut({
+                      element: orders_revenue_element.find('.chart-graph'),
+                      resize: true,
+                      colors: ["#3c8dbc", "#f56954", "#00a65a"],
+                      data: data,
+                      hideHover: 'auto'
+                    });
+                }
+            }); 
+        }
+        $start_date = (start)?start:orders_revenue_element.find('.date-range').find('span').attr('data-start');
+        $end_date = (end)?end:orders_revenue_element.find('.date-range').find('span').attr('data-end');
+        load_pie_chart($start_date,$end_date,refresh); 
         
     }
     

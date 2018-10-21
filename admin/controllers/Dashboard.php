@@ -44,9 +44,13 @@ class dashboard extends Admin_Controller
             $data = $this->get_latest_orders( $shop_id );
         break;
         case "orders_line":
+            $data = $this->get_orders_line_graph( $shop_id );
         break;
         case "orders_pie":
         $data = $this->get_orders_pie_graph( $shop_id );
+        break;
+        case "total_revenue":
+        $data = $this->get_total_revenue( $shop_id );
         break;
     }
     
@@ -72,18 +76,18 @@ class dashboard extends Admin_Controller
     return $shops;
   }
   
-  public function get_totalpendingOrders_count( $shop_id ="all",$start ="",$end="" ){
+  public function get_totalpendingOrders_count( $shop_id ="all",$start ="",$end="",$select="" ){
     $shop_id = ( $shop_id && $shop_id != 'all')?$shop_id:"";
     $where = array();
-    $shops = $this->sales_order_model->get_totalpendingOrders_count($shop_id,$start,$end);
+    $shops = $this->sales_order_model->get_totalpendingOrders_count($shop_id,$start,$end,$select);
     
     return $shops;
   }
   
-  public function get_totalCompletedOrders_count( $shop_id ="all",$start="",$end=""){
+  public function get_totalCompletedOrders_count( $shop_id ="all",$start="",$end="",$select=""){
     $shop_id = ( $shop_id && $shop_id != 'all')?$shop_id:"";
     $where = array();
-    $shops = $this->sales_order_model->get_totalCompletedOrders_count($shop_id,$start,$end);
+    $shops = $this->sales_order_model->get_totalCompletedOrders_count($shop_id,$start,$end,$select);
     
     return $shops;
   }
@@ -104,11 +108,32 @@ class dashboard extends Admin_Controller
     return $shops;
   }
   
-  public function get_total_revenue( $shop ="all" ){
+  public function get_total_revenue( $shop_id ="all" ){
     
+    $data =array();
+    $start = $this->input->post('start_date');
+    $end = $this->input->post('end_date');
+    
+    $data['pendingOrders'] =  $this->get_totalpendingOrders_count( $shop_id,$start,$end,'sum(so.total_amount) as total' );
+    $data['CompletedOrders'] =  $this->get_totalCompletedOrders_count( $shop_id,$start,$end,'sum(so.total_amount) as total' );
+    
+    $output = array();
+    
+    $output[] = array('label' => 'Pending Orders','value' => $data['pendingOrders']);
+    $output[] = array('label' => 'Completed Orders','value' => $data['CompletedOrders']);
+    return $output;
   }
   
-  public function get_orders_line_graph( $shop ="all" ){
+  public function get_orders_line_graph( $shop_id ="all" ){
+    
+    $start = $this->input->post('start_date');
+    $end = $this->input->post('end_date');
+    $shop_id = ( $shop_id && $shop_id != 'all')?$shop_id:"";
+    $status = ( $this->input->post('status') && $this->input->post('status') != 'all')?$this->input->post('status'):"";
+    
+    $data = $this->sales_order_model->get_orders_line_graph( $shop_id,$start,$end,$status );
+    
+    return $data;
     
   }
   

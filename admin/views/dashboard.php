@@ -122,7 +122,7 @@
           <!-- /.box -->
           
            <!-- AREA CHART -->
-           <div class="box box-success">
+           <div class="box box-success all_orders_revenue">
            <div class="custom_loader"></div>
             <div class="box-header with-border">
               <h3 class="box-title">Total Revenue</h3>
@@ -133,9 +133,19 @@
               
               </div>
             </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="barChart" style="height:230px"></canvas>
+            <div class="box-body chart-responsive">
+             <div class="form-group pull-right">
+                <div class="input-group">
+                  <button type="button" class="btn btn-default pull-right date-range" >
+                    <span>
+                      <i class="fa fa-calendar"></i> Date range picker
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                </div>
+              </div>
+                <div class="chart">
+                 <div class="chart-graph" ></div>
               </div>
             </div>
             <!-- /.box-body -->
@@ -147,7 +157,7 @@
         <!-- /.col (LEFT) -->
         <div class="col-md-6">
           <!-- DONUT CHART -->
-          <div class="box box-danger">
+          <div class="box box-danger all_orders_line">
           <div class="custom_loader"></div>
             <div class="box-header with-border">
               <h3 class="box-title">All orders</h3>
@@ -158,8 +168,26 @@
                 
               </div>
             </div>
-            <div class="box-body">
-              <canvas id="pieChart" style="height:250px"></canvas>
+            <div class="box-body chart-responsive">
+             <select class="form-control status_select pull-left" style="width: 100%;">
+                  <option  value="all" >All Orders</option>
+                  <option value="ACCEPTED" >Pending Orders</option>
+                  <option  selected="selected" value="COMPLETED" >Completed Orders</option>
+                
+                </select>
+              <div class="form-group pull-right">
+                <div class="input-group">
+                  <button type="button" class="btn btn-default pull-right date-range" >
+                    <span>
+                      <i class="fa fa-calendar"></i> Date range picker
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                </div>
+              </div>
+                <div class="chart">
+                 <div class="chart-graph" ></div>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>

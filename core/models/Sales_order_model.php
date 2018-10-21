@@ -174,9 +174,9 @@ class Sales_order_model extends App_model
         return ($res['total'])?$res['total']:0;
   }
   
-  public function get_totalpendingOrders_count( $shop_id = "",$start="",$end="" ){
-    
-    $this->db->select('count(so.id) as total ');
+  public function get_totalpendingOrders_count( $shop_id = "",$start="",$end="",$select="" ){
+    $select =($select)?$select:"count(so.id) as total";
+    $this->db->select($select);
     $this->db->from('sales_order so');
     $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
     $this->db->where('so.order_status','ACCEPTED');
@@ -200,9 +200,9 @@ class Sales_order_model extends App_model
     return ($res['total'])?$res['total']:0;
   }
   
-  public function get_totalCompletedOrders_count( $shop_id = "",$start="",$end="" ){
-    
-    $this->db->select('count(so.id) as total ');
+  public function get_totalCompletedOrders_count( $shop_id = "",$start="",$end="",$select="" ){
+    $select =($select)?$select:"count(so.id) as total";
+    $this->db->select($select);
     $this->db->from('sales_order so');
     $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
     $this->db->where('so.order_status','COMPLETED');
@@ -272,13 +272,44 @@ class Sales_order_model extends App_model
     
     if( empty($start) && empty($end))
     {
-        $this->db->limit(5);
+        $this->db->limit(10);
         $this->db->order_by("so.so_id", "DESC");
     }
    
     $res = $this->db->get()->result_array();
     return $res;
   }
-
+  
+  function get_orders_line_graph( $shop_id = "",$start="",$end="",$status ="" ){
+    
+    $this->db->select('DATE_FORMAT( FROM_UNIXTIME(so_id), "%Y-%m-%d") as y ,count(so.id) as item1',false);
+    $this->db->from('sales_order so');
+    $this->db->join('shops as s', 's.id = so.shop_id', 'left',false);
+    
+    if( get_current_user_role() != 'admin' ){
+        $this->db->where('s.owner_id',get_current_user_id());
+    }
+    
+    if( $shop_id ){
+        $this->db->where('s.id',$shop_id);
+    }
+    
+    if( $status ){
+        $this->db->where('so.order_status',$status);
+    }
+     
+    if( $start ){
+        $this->db->where('so.so_id >=',$start,false);
+    }
+    
+    if( $end ){
+        $this->db->where('so.so_id <=',$end,false);
+    }
+    
+    $this->db->group_by('y');
+    
+    $res = $this->db->get()->result_array();
+    return $res;
+  }
 	
 }
