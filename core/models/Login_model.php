@@ -64,9 +64,9 @@ class Login_Model extends CI_Model
       return FALSE;
    }
    
-   public function update_password($pssword){
+   public function update_password($pssword,$email){
         $this->db->from('users');
-        $user = $this->db->update('users',array('password'=>md5($pssword)));
+        $user = $this->db->update('users',array('password'=>md5($pssword)),array('email'=>$email));
      
       return $user;
    }

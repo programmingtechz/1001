@@ -106,7 +106,7 @@ class Login extends Admin_Controller
         {
             $form = $this->input->post();
          
-            $user_id = $this->login_model->update_password($form['password']);
+            $user_id = $this->login_model->update_password($form['password'],$email);
             if( $user_id )
             {
                  $this->session->set_flashdata("login_success","Password has been updated successfully.",TRUE);
