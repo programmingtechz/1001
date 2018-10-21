@@ -8,13 +8,16 @@
 
 		<form method="post">
 
-			<?php if(validation_errors() || $this->session->flashdata('login_fail1')==TRUE):?>
-				<div class="Metronic-alerts alert alert-danger fade in">
+			<?php if(validation_errors() || $this->session->flashdata('login_fail1')==TRUE || $this->session->flashdata('login_success')==TRUE):?>
+				<div class="Metronic-alerts alert alert-<?=($this->session->flashdata('login_success'))?'success':'danger'?> fade in">
 					<button class="close" aria-hidden="true" data-dismiss="alert" type="button"><i class="fa-lg fa fa-warning"></i></button>
 					<?php echo validation_errors(); ?>
 
 					<?php if($this->session->flashdata('login_fail1')==TRUE)
 	                    echo "<p>".$this->session->flashdata('login_fail1')."</p>"; ?>
+                        
+                        <?php if($this->session->flashdata('login_success')==TRUE)
+	                    echo "<p>".$this->session->flashdata('login_success')."</p>"; ?>
 	                  
 				</div>
 			<?php endif;?>

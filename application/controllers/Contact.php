@@ -65,7 +65,7 @@ class Contact extends App_Controller {
         $ins_data['created_time'] = date("Y-m-d H:i:s");
         
        
-        $flag = $this->email_manager->send_email('incrediblepolishing@gmail.com','Admin','info@dakbroincredible.com','Dakbro Incredible Polishing Studio', "DakBro - New Contact Info - ".$ins_data['phone'], $this->load->view('email_templates/contact.php',array('data'=>$ins_data),TRUE), array(), array());
+        $flag = $this->email_manager->send_email('incrediblepolishing@gmail.com','Admin','support@dakbroincredible.com','Dakbro Incredible Polishing Studio', "DakBro - New Contact Info", $this->load->view('email/contact.php',array('data'=>$ins_data),TRUE), array(), array());
         if( $flag ){
              $this->contact_model->insert(  $ins_data,  "contact");
         }
