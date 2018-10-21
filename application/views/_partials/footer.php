@@ -49,6 +49,8 @@
                     <!-- Social icon list -->
                     <ul class="template-component-social-icon-list template-component-social-icon-list-2">
                         <li><a href="https://www.facebook.com/Incrediblebikepolishingstudio" class="template-icon-social-facebook" target="_blank"></a></li>
+                        <li><a href="https://twitter.com/DakbroI" class="template-icon-social-twitter" target="_blank"></a></li>
+                        <li><a href="https://www.instagram.com/dakbro_incredible/" class="template-icon-social-instagram" target="_blank"></a></li>
                         </ul>
                     <!-- Copyright -->
                     <div class="template-footer-bottom-copyright">
