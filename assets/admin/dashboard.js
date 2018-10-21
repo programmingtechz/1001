@@ -304,9 +304,9 @@ var dashboardManager = {};
                 console.log(data);
                 
                 if( refresh ){
-                    window['orders_pie_chart'].setData( data );
+                    window['revenue_pie_chart'].setData( data );
                 }else{
-                     window['orders_pie_chart'] = new Morris.Donut({
+                     window['revenue_pie_chart'] = new Morris.Donut({
                       element: orders_revenue_element.find('.chart-graph'),
                       resize: true,
                       colors: ["#3c8dbc", "#f56954", "#00a65a"],
