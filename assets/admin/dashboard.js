@@ -53,7 +53,7 @@ var dashboardManager = {};
             $order_stats_element.find('.total_order').html(totalOrders);
             $order_stats_element.find('.pending_orders').html(pendingOrders);
             $order_stats_element.find('.completed_orders').html(CompletedOrders);
-            $order_stats_element.find('.total_revenue').html("&#8377;"+ totalAmount);           
+            $order_stats_element.find('.total_revenue').html("&#8377;"+ module.numberWithCommas(totalAmount));           
             
         });
     }
@@ -165,8 +165,8 @@ var dashboardManager = {};
                                                   start          : moment(data[i]['so_id']*1000),
                                                   end            : moment(data[i]['so_id']*1000),
                                                   so_id            : data[i]['id'],
-                                                  backgroundColor: (data[i]['so_id'] == 'ACCEPTED')?'red':'green', //Success (green)
-                                                  borderColor    : (data[i]['so_id'] == 'ACCEPTED')?'red':'green' //Success (green)}
+                                                  backgroundColor: (data[i]['order_status'] == 'ACCEPTED')?'red':'green', //Success (green)
+                                                  borderColor    : (data[i]['order_status'] == 'ACCEPTED')?'red':'green' //Success (green)}
                                             });
                                         }
                                         callback(event);           
@@ -194,7 +194,10 @@ var dashboardManager = {};
             
             if( data.length ){
                 for( var i=0; i<data.length ; i++){
-                    var status = (data[i]['order_status'] == "ACCEPTED")?"danger":"success";
+                    
+                    if( data[i]['order_status'] == "ACCEPTED") data[i]['order_status'] = "PENDING";
+                    
+                    var status = (data[i]['order_status'] == "PENDING")?"danger":"success";
                     var str ="<li>";
                     str +='<span class="text">Order no: #<u><a target="_blank" href="'+base_url+'orders/view/'+data[i]['id']+'">'+data[i]['so_id']+'</a></u> Booked Date: '+moment(data[i]['so_id']*1000).format('DD/MM/YYYY')+'</span>';
                     str +='<small class="label label-'+status+'"><i class="fa fa-clock-o"></i> '+data[i]['order_status']+'</small>';
@@ -349,6 +352,14 @@ var dashboardManager = {};
               
             });
     }
+    
+    module.numberWithCommas = function(x) {
+        
+        if(x==undefined)return '';
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    };
     
 })( dashboardManager || ( dashboardManager = {} ) );
 

@@ -61,7 +61,7 @@ class Admin_Controller extends App_Controller
             redirect('login');
         }
         
-        $allow_pages = array("home","shops","orders","holidays","login");
+        $allow_pages = array("home","shops","orders","holidays","login","dashboard");
         
         if( is_logged_in() && all_settings('user_role') != 'admin'  && !in_array($this->router->fetch_class(),$allow_pages)){
             
