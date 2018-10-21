@@ -24,6 +24,22 @@ var dashboardManager = {};
              });
              
              shop_id = $('.shop_select').val();
+             
+             orders_pie_lement.find('.fa-refresh').on('click',function(){
+                module.orders_pie_graph(true);
+             });
+             $latest_orders_element.find('.fa-refresh').on('click',function(){
+                module.latest_orders(true);
+             });
+             $calendar_orders_element.find('.fa-refresh').on('click',function(){
+                module.orders_calendar_list(true);
+             });
+             orders_line_element.find('.fa-refresh').on('click',function(){
+                module.orders_line_graph(true);
+             });
+             orders_revenue_element.find('.fa-refresh').on('click',function(){
+                module.revenue_pie_graph(true);
+             });
          }
          
          module.order_Status(refresh);
