@@ -13,7 +13,7 @@
 	            <span>
 	            	<span>1</span>
 	            	<span>/</span>
-	            	<span>5</span>	
+	            	<span>6</span>	
 	            </span>
 	            <h3>Shop</h3>
 	            <h5>Select Shop below.</h5>
@@ -43,7 +43,7 @@
                 <span>
                     <span>2</span>
                     <span>/</span>
-                    <span>5</span>  
+                    <span>6</span>  
                 </span>
                 <h3>Vehicle type</h3>
                 <h5>Select vehicle type below.</h5>
@@ -59,7 +59,7 @@
                 <span>
                     <span>3</span>
                     <span>/</span>
-                    <span>5</span>  
+                    <span>6</span>  
                 </span>
                 <h3>Services</h3>
                 <h5>Select a service below.</h5>
@@ -75,7 +75,7 @@
                 <span>
                     <span>4</span>
                     <span>/</span>
-                    <span>5</span>  
+                    <span>6</span>  
                 </span>
                 <h3>Related Services</h3>
                 <h5>Select related services below.</h5>
@@ -91,7 +91,7 @@
                 <span>
                     <span>5</span>
                     <span>/</span>
-                    <span>5</span>  
+                    <span>6</span>  
                 </span>
                 <h3>Booking summary</h3>
                 <h5>Please provide us with your contact information.</h5>
@@ -197,7 +197,73 @@
                             <textarea rows="1" cols="1" name="booking-form-message" ></textarea>
                         </div>
                     </li>
+                </ul>                
+            </div>
+        </div>
+
+        <div class="row pb-20 pt-20">
+            <div class="col-md-6 template-component-booking-item-header template-clear-fix">
+                <span>
+                    <span>6</span>
+                    <span>/</span>
+                    <span>6</span>  
+                </span>
+                <h3>Payment Info</h3>
+                <h5>Pay using debit/credit card.</h5>
+            </div>
+        </div>
+
+        <div class="row pb-20">
+            <!-- Content -->
+            <div class=" home-form-sec template-component-booking-item-content template-margin-top-reset" style="width: 100%">
+                <!-- Layout -->
+                <ul class="template-layout-50x50 sec-one template-layout-margin-reset template-clear-fix email-phone" style="width: 100%">
+                    <!-- First name -->
+                    <li class="template-layout-column-left template-margin-bottom-reset" style="visibility: visible;">
+                        <div class="template-component-form-field">
+                            <label for="payment-form-card-number">Card Number </label>
+                            <input type="text" placeholder="Enter Card Number" name="payment-form-card-number" value="" autocomplete="off">
+                        </div>
+                    </li>
+                    
                 </ul>
+
+                <ul class="template-layout-33x33x33 sec-three template-layout-margin-reset template-clear-fix">
+                    <!-- Vehicle model -->
+                    <li class="template-layout-column-left template-margin-bottom-reset" style="visibility: visible;">
+                        <div class="template-component-form-field">
+                            <label for="payment-form-exp-month">Expiration Date <br/>Month *</label>
+                            <input type="text" placeholder="MM" name="payment-form-exp-month" >
+                        </div>
+                    </li>
+                    <!-- Vehicle make -->
+                    <li class="template-layout-column-center template-margin-bottom-reset" style="visibility: visible;">
+                        <div class="template-component-form-field">
+                            <label for="payment-form-exp-year"><br/>Year *</label>
+                            <input type="text" placeholder="YY" name="payment-form-exp-year" >
+                        </div>
+                    </li>
+                    
+                    <!-- Booking date -->
+                    <li class="template-layout-column-right template-margin-bottom-reset" style="visibility: visible;">
+                        <div class="template-component-form-field">
+                            <label for="payment-form-cvv"><br/>CVV/CVC *</label>
+                            <input type="text" data-field="datetime" name="payment-form-cvv" autocomplete="off">
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="template-layout-50x50 sec-one template-layout-margin-reset template-clear-fix email-phone" style="width: 100%">
+                    <!-- First name -->
+                    <li class="template-layout-column-left template-margin-bottom-reset" style="visibility: visible;">
+                        <div class="template-component-form-field">
+                            <label for="payment-form-card-name">Card Holder Name </label>
+                            <input type="text" placeholder="Enter Card Holder Name" name="payment-form-card-name" value="">
+                        </div>
+                    </li>
+                    
+                </ul>
+
                 <!-- Layout -->
                 <ul class="template-layout-33x33x33 sec-five template-layout-margin-reset template-clear-fix">
                     <!-- Vehicle model -->
@@ -235,7 +301,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
